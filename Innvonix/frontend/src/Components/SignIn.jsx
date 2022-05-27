@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,7 +12,7 @@ import Box from '@mui/material/Box';
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';;
 
 function Copyright(props) {
     return (
@@ -29,13 +30,38 @@ function Copyright(props) {
 const theme = createTheme();
 
 const SignIn = () => {
-    const handleSubmit = (event) => {
+    const [data, setData] = useState({ email: "", password: "" });
+    const [error, setError] = useState("");
+
+    const handleChange = ({ currentTarget: input }) => {
+        setData({ ...data, [input.name]: input.value });
+        // console.log(data);
+    };
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        console.log(data);
+
+        try {
+            const url = `http://localhost:8080/api/auth/`;
+            const { data: res } = await axios.post(url, data);
+            localStorage.setItem("token", res.data);
+            window.location = "/";
+        } catch (error) {
+            if (
+                error.response &&
+                error.response.status >= 400 &&
+                error.response.status <= 500
+            ) {
+                setError(error.response.data.message);
+            }
+        }
+
+        // const data = new FormData(event.currentTarget);
+        // console.log({
+        //     email: data.get('email'),
+        //     password: data.get('password'),
+        // });
     };
 
     return <>
@@ -67,6 +93,8 @@ const SignIn = () => {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            onChange={handleChange}
+                            value={data.email}
                         />
                         <TextField
                             margin="normal"
@@ -77,6 +105,8 @@ const SignIn = () => {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            onChange={handleChange}
+                            value={data.password}
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}

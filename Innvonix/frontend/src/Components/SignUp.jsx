@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +12,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Copyright(props) {
     return (
@@ -29,13 +31,41 @@ function Copyright(props) {
 const theme = createTheme();
 
 const SignUp = () => {
-    const handleSubmit = (event) => {
+    const [data, setData] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+    });
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
+
+    const handleChange = ({ currentTarget: input }) => {
+        setData({ ...data, [input.name]: input.value });
+    };
+
+    const handleSubmit = async (event) => {
+        console.log(data);
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        try {
+            const url = "http://localhost:8080/api/users";
+            const { data: res } = await axios.post(url, data);
+            navigate("/signin");
+            console.log(res.message);
+        } catch (error) {
+            if (
+                error.response &&
+                error.response.status >= 400 &&
+                error.response.status <= 500
+            ) {
+                setError(error.response.data.message);
+            }
+        }
+        // const data = new FormData(event.currentTarget);
+        // console.log({
+        //     email: data.get('email'),
+        //     password: data.get('password'),
+        // });
     };
 
     return <>
@@ -60,6 +90,8 @@ const SignUp = () => {
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField
+                                    onChange={handleChange}
+                                    value={data.firstName}
                                     autoComplete="given-name"
                                     name="firstName"
                                     required
@@ -71,6 +103,8 @@ const SignUp = () => {
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
+                                    onChange={handleChange}
+                                    value={data.lastName}
                                     required
                                     fullWidth
                                     id="lastName"
@@ -81,6 +115,8 @@ const SignUp = () => {
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
+                                    onChange={handleChange}
+                                    value={data.email}
                                     required
                                     fullWidth
                                     id="email"
@@ -91,6 +127,8 @@ const SignUp = () => {
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
+                                    onChange={handleChange}
+                                    value={data.password}
                                     required
                                     fullWidth
                                     name="password"
