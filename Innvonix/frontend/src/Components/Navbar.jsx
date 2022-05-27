@@ -5,6 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return <>
@@ -20,10 +21,14 @@ const Navbar = () => {
                     >
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Innvonix Task
+                        <Link to="/" style={{ textDecoration: "none", color: "white" }} > Innvonix Task </Link>
                     </Typography>
-                    <Button color="inherit">Login</Button>
-                    <Button color="inherit">Signup</Button>
+                    <Link to="/signin" style={{ textDecoration: "none", color: "white" }}>
+                        <Button color="inherit" >Signin</Button>
+                    </Link>
+                    <Link to="/signup" style={{ textDecoration: "none", color: "white" }}>
+                        <Button color="inherit">Signup</Button>
+                    </Link>
                 </Toolbar>
             </AppBar>
         </Box>
