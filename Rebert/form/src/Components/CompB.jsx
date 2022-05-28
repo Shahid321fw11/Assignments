@@ -28,7 +28,6 @@ const CompB = () => {
     };
 
     return <>
-
         <Box sx={{ width: '100%', maxWidth: 800, marginLeft: 'auto', marginRight: 'auto', border: "2px solid black", padding: '1rem', marginTop: '1rem' }}>
             <Typography variant="h5" component="div" gutterBottom>
                 B. VALUE BY ADOPTING  PMR
