@@ -45,13 +45,15 @@ const SignUp = () => {
     };
 
     const handleSubmit = async (event) => {
-        console.log(data);
         event.preventDefault();
+        console.log(data);
         try {
             const url = "http://localhost:8080/api/users";
-            const { data: res } = await axios.post(url, data);
+            // const { data: res } = await axios.post(url, data);
+            const output = await axios.post(url, data);
+            console.log(output);
             navigate("/signin");
-            console.log(res.message);
+            // console.log(res.message);
         } catch (error) {
             if (
                 error.response &&

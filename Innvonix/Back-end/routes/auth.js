@@ -24,6 +24,11 @@ router.post('/', async (req, res) => {
         res.status(500).send({ message: 'Internal Server Error' });
     }
 });
+router.get('/', (req, res) => {
+    console.log("sdsdfsdf get request");
+    res.send("i am here")
+});
+
 
 const validate = (data) => {
     const schema = Joi.object({
