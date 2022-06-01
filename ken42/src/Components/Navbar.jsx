@@ -27,7 +27,7 @@ const Navbar = () => {
                             letterSpacing: '.3rem',
                         }}
                     >
-                        <Link to="/" style={{ textDecoration: 'none' }}>
+                        <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
                             KEN42
                         </Link>
                     </Typography>
@@ -42,7 +42,7 @@ const Navbar = () => {
                             fontWeight: 700,
                         }}
                     >
-                        <Link to="/professor" style={{ textDecoration: 'none' }}>
+                        <Link to="/professor" style={{ textDecoration: 'none', color: 'white' }}>
                             Professor
                         </Link>
                     </Typography>
@@ -56,7 +56,7 @@ const Navbar = () => {
                             fontWeight: 700,
                         }}
                     >
-                        <Link to="/classRoom" style={{ textDecoration: 'none' }}>
+                        <Link to="/classRoom" style={{ textDecoration: 'none', color: 'white' }}>
                             ClassRoom
                         </Link>
                     </Typography>
@@ -72,7 +72,7 @@ const Navbar = () => {
                             fontWeight: 700,
                         }}
                     >
-                        <Link to="/studentGroup" style={{ textDecoration: 'none' }}>
+                        <Link to="/studentGroup" style={{ textDecoration: 'none', color: 'white' }}>
                             StudentGroup
                         </Link>
                     </Typography>

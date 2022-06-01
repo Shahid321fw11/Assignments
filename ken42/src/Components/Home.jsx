@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -10,6 +9,7 @@ import Select from '@mui/material/Select';
 
 
 const Home = () => {
+    const day_array = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const [state, setState] = useState({
         day: '',
         professor: '',
@@ -37,14 +37,10 @@ const Home = () => {
                     labelId="demo-simple-select-standard-label"
                     id="demo-simple-select-standard"
                     value={state.day}
-                    onChange={(e) => {
-                        setState({ ...state, day: e.target.value })
-                    }}
                     label="day"
+                    onChange={(event) => setState({ ...state, day: event.target.value })}
                 >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    {day_array.map((day, index) => <MenuItem key={index} value={day}>{day}</MenuItem>)}
                 </Select>
             </FormControl>
 
