@@ -57,7 +57,7 @@ const Navbar = () => {
                         }}
                     >
                         <Link to="/classRoom" style={{ textDecoration: 'none' }}>
-                            Class-Room
+                            ClassRoom
                         </Link>
                     </Typography>
 
@@ -73,7 +73,7 @@ const Navbar = () => {
                         }}
                     >
                         <Link to="/studentGroup" style={{ textDecoration: 'none' }}>
-                            Student-Group
+                            StudentGroup
                         </Link>
                     </Typography>
                 </Toolbar>
