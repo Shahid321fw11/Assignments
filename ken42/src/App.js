@@ -8,12 +8,12 @@ import StudentGroup from './Components/StudentGroup';
 
 function App() {
   return <>
-    <Navbar />
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/professor' element={<Professor />} />
-        <Route path='/clasRoom' element={<ClassRoom />} />
+        <Route path='/classRoom' element={<ClassRoom />} />
         <Route path='/studentGroup' element={<StudentGroup />} />
         <Route path="*" element={<div>Not Found</div>} />
 

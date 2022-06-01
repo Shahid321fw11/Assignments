@@ -15,78 +15,70 @@ const Navbar = () => {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                    <Link to="/">
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="a"
+                        sx={{
+                            mr: 2,
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                            letterSpacing: '.3rem',
+                        }}
+                    >
+                        <Link to="/" style={{ textDecoration: 'none' }}>
+                            KEN42
+                        </Link>
+                    </Typography>
 
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="a"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'none', md: 'flex' },
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
-                                textDecoration: 'none',
-                            }}
-                        >KEN42
-                        </Typography>
-                    </Link>
-                    <Link to="/professor">
+                    <Typography
+                        noWrap
+                        component="a"
+                        sx={{
+                            mr: 2,
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                        }}
+                    >
+                        <Link to="/professor" style={{ textDecoration: 'none' }}>
+                            Professor
+                        </Link>
+                    </Typography>
+                    <Typography
+                        noWrap
+                        component="a"
+                        sx={{
+                            mr: 2,
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                        }}
+                    >
+                        <Link to="/classRoom" style={{ textDecoration: 'none' }}>
+                            Class-Room
+                        </Link>
+                    </Typography>
 
-                        <Typography
-                            noWrap
-                            component="a"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'none', md: 'flex' },
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
-                                textDecoration: 'none',
-                            }}
-                        >Professor
-                        </Typography>
-                    </Link>
-                    <Link to="/classRoom">
-                        <Typography
-                            noWrap
-                            component="a"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'none', md: 'flex' },
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
-                                textDecoration: 'none',
-                            }}
-                        >Class-Room
-                        </Typography>
-                    </Link>
 
-                    <Link to="/studentGroup">
-
-                        <Typography
-                            noWrap
-                            component="a"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'none', md: 'flex' },
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
-                                textDecoration: 'none',
-                            }}
-                        >Student-Group
-                        </Typography>
-                    </Link>
+                    <Typography
+                        noWrap
+                        component="a"
+                        sx={{
+                            mr: 2,
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                        }}
+                    >
+                        <Link to="/studentGroup" style={{ textDecoration: 'none' }}>
+                            Student-Group
+                        </Link>
+                    </Typography>
                 </Toolbar>
             </Container>
-        </AppBar>
+        </AppBar >
     );
 };
 export default Navbar;
