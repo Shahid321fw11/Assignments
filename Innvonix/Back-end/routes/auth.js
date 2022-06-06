@@ -5,11 +5,12 @@ const Joi = require('joi');
 
 router.post('/', async (req, res) => {
     try {
-        const { error } = validate(req.body);
-        if (error) {
-            return res.status(400).send({ message: error.details[0].message });
-        }
+        // const { error } = validate(req.body);
+        // if (error) {
+        //     return res.status(400).send({ message: error.details[0].message });
+        // }
         const user = await User.findOne({ email: req.body.email });
+        console.log("user", user);
         if (!user) {
             return res.status(401).send({ message: 'Invalid Email or Password' });
         }
@@ -25,8 +26,7 @@ router.post('/', async (req, res) => {
     }
 });
 router.get('/', (req, res) => {
-    console.log("sdsdfsdf get request");
-    res.send("i am here")
+    res.send('Hello');
 });
 
 

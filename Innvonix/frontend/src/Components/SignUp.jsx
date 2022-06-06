@@ -29,7 +29,6 @@ function Copyright(props) {
 }
 
 const theme = createTheme();
-
 const SignUp = () => {
     const [data, setData] = useState({
         firstName: "",
@@ -51,6 +50,7 @@ const SignUp = () => {
             const url = "http://localhost:8080/api/users";
             // const { data: res } = await axios.post(url, data);
             const output = await axios.post(url, data);
+            alert("User created successfully");
             console.log(output);
             navigate("/signin");
             // console.log(res.message);

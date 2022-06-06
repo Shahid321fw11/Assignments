@@ -2,7 +2,6 @@ const router = require('express').Router();
 const { User, validate } = require('../models/user');
 const bcrypt = require('bcrypt');
 
-
 router.post('/', async (req, res) => {
     try {
         // const { error } = validate(req.body);
@@ -11,9 +10,11 @@ router.post('/', async (req, res) => {
         //     return res.status(400).send({ message: error.details[0].message });
         // }
         const user = await User.findOne({ email: req.body.email });
-        // console.log(user);
+        console.log(user);
         if (user) {
-            return res.status(409).send({ message: 'Email already exists' });
+            return res.status(401).send({ message: 'Email already exists' });
+
+            // return res.status(409).send({ message: 'Email already exists' });
         }
         const salt = await bcrypt.genSalt(Number(process.env.SALT));
         const hashPassword = await bcrypt.hash(req.body.password, salt);
@@ -26,10 +27,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.get('/', (req, res) => {
-    console.log("sdsdfsdf get request");
-    res.send("i am here")
-});
 
 
 module.exports = router;
