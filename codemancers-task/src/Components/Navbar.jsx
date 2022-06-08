@@ -37,7 +37,7 @@ const Navbar = () => {
                             // float: 'right',
                         }}
                     >
-                        <Link to="/professor" style={{ textDecoration: 'none', color: 'white' }}>
+                        <Link to="/post" style={{ textDecoration: 'none', color: 'white' }}>
                             Add Post
                         </Link>
                     </Typography>
