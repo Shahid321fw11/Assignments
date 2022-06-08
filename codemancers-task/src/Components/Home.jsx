@@ -35,7 +35,6 @@ const Home = () => {
                     </CardActionArea>
                 </Card>
             </>
-
         }
         ) : <>
             <Typography variant="h5" component="h2" style={{ textAlign: 'center' }} >
