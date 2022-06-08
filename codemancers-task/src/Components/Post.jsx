@@ -24,17 +24,17 @@ const Post = () => {
         };
     }
 
-    // after clicking on gifgy
-    // const val = item.images.downsized_large.url;
-    const [gifgy, setGifgy] = useState('');
+    const [gifgy, setGifgy] = useState([]);
     const handleGifgyClick = (e) => {
-        setGifgy(e.target.value);
-        console.log(e.target.);
+        setGifgyData(e.target.src);
+        console.log(e.target.alt);
+        console.log(e.target.src);
     }
 
     const handleChange = (e) => {
         setWritePost(e.target.value);
     }
+
     const handleChange2 = (e) => {
         setGifgyData(e.target.value);
 
@@ -42,34 +42,39 @@ const Post = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(writePost);
-        console.log(gifgyData);
-        console.log(gifgy);
-        // make writePost empty
-        setWritePost(e.target.value = '');
-        // make gifgyData empty
-        setGifgyData(e.target.value = '');
+        if (writePost.length === 0) {
+            return alert('Please write something');
+        }
+        // add post in localStorage
+        const currentItem = { message: writePost, image: gifgyData };
+        console.log(currentItem, 'currentItem');
+        const posts = JSON.parse(localStorage.getItem('posts')) || [];
+        posts.push(currentItem);
+        localStorage.setItem('posts', JSON.stringify(posts));
+        setWritePost('');
+        setGifgyData('');
+        console.log(posts, 'posts');
+        // alert
+        alert('Post added');
     }
 
     // useEffect to fetch api
 
     useEffect(() => {
+        let controller = new AbortController();
         const apiKey = `https://api.giphy.com/v1/gifs/search?api_key=0d05b586e3ff4884b6dc9837d9601726&limit=20&offset=0&rating=G&lang=fr&q=` + gifgyData;
         const fetchData = async () => {
             try {
                 const response = await fetch(apiKey);
                 const data = await response.json();
-                console.log(data);
                 setGifgyData2(data.data);
-                console.log(gifgyData2);
-                // setData(data.data);
-
-
             } catch (error) {
                 console.log('error', error);
             }
         }
         fetchData();
+        // cleanup function
+        return () => controller?.abort();
     }, [gifgyData])
 
 
@@ -97,7 +102,7 @@ const Post = () => {
                 </Paper>
 
                 <Paper elevation={3} style={{ display: 'flex', justifyContent: 'space-around' }}>
-                    <TextField id="filled-basic" label="Search for Giphy" variant="filled" onChange={handleChange2} />
+                    <TextField id="filled-basic" label="Search for Giphy" variant="filled" onChange={handleChange2} name='gifgyData' value={gifgyData} />
                     <Button type="submit" value="submit" variant="contained" style={{ width: '30%' }} onClick={handleSubmit} >Post</Button>
                 </Paper>
 
@@ -111,15 +116,14 @@ const Post = () => {
                         >
                             {gifgyData2.map((item, index) => (
                                 <ImageListItem >
-                                    {/* <img src={item.images.downsized_large.url} alt="giphy" /> */}
                                     <img
                                         {...srcset(item.images.downsized_large.url, 121, item.rows, item.cols)}
+                                        key={index}
                                         alt={item.title}
                                         loading="lazy"
                                         onClick={handleGifgyClick}
                                         style={{ cursor: 'pointer' }}
                                     />
-
                                 </ImageListItem>
                             ))}
                         </ImageList>
